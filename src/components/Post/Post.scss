@@ -1,0 +1,35 @@
+.post {
+  padding: 10px;
+  border-radius: 20px;
+  background-color: aqua;
+}
+
+.post__head {
+  margin-bottom: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.post__avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &-img {
+    height: 100%;
+  }
+}
+
+.post__body {
+  margin-bottom: 10px;
+}
+
+.post__comments {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

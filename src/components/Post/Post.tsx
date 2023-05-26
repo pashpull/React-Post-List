@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './Post.scss';
 
 import { useAppSelector, useAppDispatch } from '../../hooks/hooks';
+import { getCommentsLoading } from '../../redux/slices/commentsSlice';
+
+import Spinner from 'react-bootstrap/Spinner';
 
 import { IPost } from '../../models/IPost';
 import { IComment } from '../../models/IComment';
 
-import { getCommentsLoading } from '../../redux/slices/commentsSlice';
 import Button from '../../UI/Button/Button';
 
 interface PostProps {
@@ -27,7 +30,15 @@ const Post = ({ post }: PostProps) => {
   const dispatch = useAppDispatch();
 
   const commetnsBtnHandler = (): void => {
-    dispatch(getCommentsLoading(post.id));
+    comments.length === 0
+      ? dispatch(getCommentsLoading(post.id))
+      : setComments([]);
+  };
+
+  const userAvatarHandler = (): void => {
+    localStorage.setItem('userId', post.userId.toString());
+    // useLocalStorage(post.userId, 'userId');
+    // dispatch(getUserLoading(post.userId));
   };
 
   const stringPreparing = (string: string): string => {
@@ -42,13 +53,13 @@ const Post = ({ post }: PostProps) => {
   return (
     <div className="post">
       <div className="post__head">
-        <div className="post__avatar">
+        <Link to={'/user'} onClick={userAvatarHandler} className="post__avatar">
           <img
             src="/JasonStatham.jpg"
             alt="Avatar"
             className="post__avatar-img"
           />
-        </div>
+        </Link>
         <div className="post__title">
           <h2>{stringPreparing(post.title)}</h2>
         </div>
@@ -56,15 +67,18 @@ const Post = ({ post }: PostProps) => {
       <div className="post__body">
         <p className="post__content">{stringPreparing(post.body)}</p>
       </div>
-      {comments.length === 0 ? (
-        <Button text={'Comments'} toDo={commetnsBtnHandler} />
-      ) : (
-        <div className="post__comments">
-          {commentsState.comments.map((comment: IComment) => {
+
+      <Button text={'Comments'} toDo={commetnsBtnHandler} />
+
+      <div className="post__comments">
+        {commentsState.isLoading ? (
+          <Spinner animation="border" variant="primary" />
+        ) : (
+          comments.map((comment: IComment) => {
             return <p key={comment.id}>{comment.body}</p>;
-          })}
-        </div>
-      )}
+          })
+        )}
+      </div>
     </div>
   );
 };

@@ -11,7 +11,7 @@ interface ICommentsState {
 const initialState: ICommentsState = {
   postId: 0,
   comments: [],
-  isLoading: true,
+  isLoading: false,
 };
 
 const commentsSlice = createSlice({

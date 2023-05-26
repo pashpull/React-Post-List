@@ -1,4 +1,4 @@
-import { put, takeEvery } from 'redux-saga/effects';
+import { delay, put, takeEvery } from 'redux-saga/effects';
 
 import axios from 'axios';
 
@@ -9,6 +9,7 @@ const ALL_POSTS_URL = 'https://jsonplaceholder.typicode.com/posts';
 function* workGetPostAxios(): any {
   let posts;
   yield axios.get(ALL_POSTS_URL).then((res) => (posts = res.data));
+  yield delay(500);
   yield put(getPosts(posts));
 }
 

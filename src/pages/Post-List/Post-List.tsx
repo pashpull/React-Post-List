@@ -1,7 +1,11 @@
 import { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hooks/hooks';
 import './Post-List.scss';
+
 import { getPostsLoading } from '../../redux/slices/postsSlice';
+
+import Spinner from 'react-bootstrap/Spinner';
+
 import Post from '../../components/Post/Post';
 
 const PostList = () => {
@@ -18,7 +22,7 @@ const PostList = () => {
   return (
     <div className="post-list">
       {postsState.isLoading ? (
-        <h1>Грузим....</h1>
+        <Spinner animation="border" variant="primary" />
       ) : (
         postsState.posts.map((post) => {
           return <Post key={post.id} post={post} />;

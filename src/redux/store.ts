@@ -8,15 +8,22 @@ import postsSaga from './sagas/postsSaga';
 import commentsReducer from './slices/commentsSlice';
 import commentsSaga from './sagas/commentsSaga';
 
+import userReducer from './slices/userSlice';
+import userSaga from './sagas/userSaga';
+
 const sagaMiddleware = createSagaMiddleware();
 
 function* sagas() {
-  yield all([commentsSaga(), postsSaga()]);
+  yield all([commentsSaga(), postsSaga(), userSaga()]);
 }
 
 export const store = configureStore({
   devTools: true,
-  reducer: { posts: postsReducer, comments: commentsReducer },
+  reducer: {
+    posts: postsReducer,
+    comments: commentsReducer,
+    user: userReducer,
+  },
   middleware: [sagaMiddleware],
 });
 

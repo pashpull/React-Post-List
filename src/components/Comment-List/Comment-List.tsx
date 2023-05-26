@@ -19,11 +19,11 @@ const CommentList = ({ post }: CommentList) => {
           />
         </div>
         <div className="post__title">
-          <h2>{stringPreparing(post.title)}</h2>
+          <h2>{}</h2>
         </div>
       </div>
       <div className="post__body">
-        <p className="post__content">{stringPreparing(post.body)}</p>
+        <p className="post__content">{}</p>
       </div>
     </div>
   );

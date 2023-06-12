@@ -7,6 +7,7 @@ import { getPostsLoading } from '../../redux/slices/postsSlice';
 import Spinner from 'react-bootstrap/Spinner';
 
 import Post from '../../components/Post/Post';
+import { Col, Row } from 'react-bootstrap';
 
 const PostList = () => {
   const postsState = useAppSelector((state) => {
@@ -20,15 +21,21 @@ const PostList = () => {
   }, []);
 
   return (
-    <div className="post-list">
+    <>
       {postsState.isLoading ? (
         <Spinner animation="border" variant="primary" />
       ) : (
-        postsState.posts.map((post) => {
-          return <Post key={post.id} post={post} />;
-        })
+        <Row xs={1} md={1} lg={1} className="g-4">
+          {postsState.posts.map((post) => {
+            return (
+              <Col key={post.id}>
+                <Post post={post} />
+              </Col>
+            );
+          })}
+        </Row>
       )}
-    </div>
+    </>
   );
 };
 

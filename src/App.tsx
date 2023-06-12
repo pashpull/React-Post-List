@@ -3,6 +3,7 @@ import { store } from './redux/store';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container } from 'react-bootstrap';
 
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
@@ -16,12 +17,14 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <Header />
-        <Routes>
-          <Route path="/" element={<PostList />} />
-          <Route path="/user" element={<User />} />
-          <Route path="/about" element={<About />} />
-          <Route path="*" element={<h1>Page is not found</h1>} />
-        </Routes>
+        <Container>
+          <Routes>
+            <Route path="/" element={<PostList />} />
+            <Route path="/user" element={<User />} />
+            <Route path="/about" element={<About />} />
+            <Route path="*" element={<h1>Page is not found</h1>} />
+          </Routes>
+        </Container>
         <Footer />
       </BrowserRouter>
     </Provider>

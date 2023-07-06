@@ -17,7 +17,7 @@ const Post = ({ post }: PostProps) => {
   return (
     <div className="post">
       <div className="post__head">
-        <Link to={`/user/${userId}`} className="post__avatar">
+        <Link to={`React-Post-List/user/${userId}`} className="post__avatar">
           <img
             src="/JasonStatham.jpg"
             alt="Avatar"

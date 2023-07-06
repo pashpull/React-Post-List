@@ -22,9 +22,9 @@ function App() {
         <Menu />
         <Main>
           <Routes>
-            <Route path="/" element={<PostListPage />} />
-            <Route path="/user/:userId" element={<UserPage />} />
-            <Route path="/about" element={<AboutPage />} />
+            <Route path="React-Post-List/" element={<PostListPage />} />
+            <Route path="React-Post-List/user/:userId" element={<UserPage />} />
+            <Route path="React-Post-List/about" element={<AboutPage />} />
             <Route path="*" element={<h1>Page is not found</h1>} />
           </Routes>
         </Main>

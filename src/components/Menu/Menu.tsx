@@ -39,12 +39,12 @@ const Menu = () => {
         <div className="menu__content" onClick={(e) => e.stopPropagation()}>
           <ul className="menu__nav-list">
             <li className="menu__nav-item">
-              <Link to={'/'} onClick={menuLinkHandler}>
+              <Link to={'React-Post-List/'} onClick={menuLinkHandler}>
                 Home
               </Link>
             </li>
             <li className="menu__nav-item">
-              <Link to={'/about'} onClick={menuLinkHandler}>
+              <Link to={'React-Post-List/about'} onClick={menuLinkHandler}>
                 About
               </Link>
             </li>

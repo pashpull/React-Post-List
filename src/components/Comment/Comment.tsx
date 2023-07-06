@@ -1,15 +1,20 @@
 import './Comment.scss';
 
+import stringPreparing from '../../lib/stringPreparing';
+
+import { IComment } from '../../models/IComment';
+
 interface CommentProps {
-  email: string;
-  text: string;
+  comment: IComment;
 }
 
-const Comment = ({ email, text }: CommentProps) => {
+const Comment = ({ comment }: CommentProps) => {
+  const { email, body } = comment;
+
   return (
     <div className="comment">
       <h2 className="comment__title">{email}</h2>
-      <p className="comment__content">{text}</p>
+      <p className="comment__content">{stringPreparing(body)}</p>
     </div>
   );
 };

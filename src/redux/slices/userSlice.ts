@@ -1,34 +1,44 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { IUser } from '../../models/IUser';
+import { IPost } from '../../models/IPost';
 
-interface ICommentsState {
+interface IUserState {
   userId: number;
   user?: IUser;
   isLoading: boolean;
+  userPosts: IPost[];
+  error: string;
 }
 
-const initialState: ICommentsState = {
+const initialState: IUserState = {
   userId: 0,
-
-  isLoading: true,
+  isLoading: false,
+  userPosts: [],
+  error: '',
 };
 
 const userSlice = createSlice({
   name: 'user',
   initialState: initialState,
   reducers: {
-    getUserLoading: (state, action) => {
-      state.userId = action.payload;
-      console.log(state.userId);
+    userRequest(state, action) {
+      state.error = '';
       state.isLoading = true;
+      state.userId = action.payload;
     },
-    getUser: (state, action) => {
-      state.user = action.payload;
+    setUser(state, action) {
+      state.user = action.payload.user;
+      state.userPosts = action.payload.userPosts;
       state.isLoading = false;
+    },
+    userRequestError(state, action) {
+      state.error = action.payload;
+      state.isLoading = false;
+      state.userId = 0;
     },
   },
 });
 
-export const { getUserLoading, getUser } = userSlice.actions;
+export const { userRequest, setUser, userRequestError } = userSlice.actions;
 export default userSlice.reducer;

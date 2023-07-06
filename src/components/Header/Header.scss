@@ -1,7 +1,14 @@
 .header {
-  display: flex;
-  gap: 50px;
+  border-bottom: 1px #c1c4ba solid;
+  background-color: #394040;
+  position: sticky;
+  margin-bottom: 10px;
+  top: 0;
+}
+
+.header__bar {
+  box-sizing: border-box;
   max-width: 1024px;
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 20px 10px;
 }

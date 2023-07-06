@@ -3,11 +3,15 @@ import './Button.scss';
 interface ButtonProps {
   text: string;
   toDo: any;
+  localClassName?: string;
 }
 
-const Button = ({ text, toDo }: ButtonProps) => {
+const Button = ({ text, toDo, localClassName }: ButtonProps) => {
   return (
-    <button className="button" onClick={toDo}>
+    <button
+      className={`button${localClassName ? localClassName : ''}`}
+      onClick={toDo}
+    >
       {text}
     </button>
   );

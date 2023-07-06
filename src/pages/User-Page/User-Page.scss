@@ -1,0 +1,49 @@
+.user {
+  padding: 0 10px;
+}
+
+.user__back-btn {
+  position: fixed;
+  background-color: #35421d;
+  right: 70px;
+  bottom: 76px;
+}
+
+.user__head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.user__avatar {
+  width: 40vw;
+  height: 40vw;
+  max-width: 400px;
+  max-height: 400px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.user__info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.user__posts {
+  margin: 0 -10px;
+}
+
+@media (max-width: 644px) {
+  .user__head {
+    flex-direction: column;
+  }
+  .user__avatar {
+    align-self: center;
+  }
+  .user__info {
+    gap: 3px;
+  }
+}

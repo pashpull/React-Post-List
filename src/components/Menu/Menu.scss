@@ -1,0 +1,41 @@
+.menu {
+  top: -10px;
+  position: relative;
+}
+
+.menu_active {
+  .menu__wrapper {
+    backdrop-filter: blur(2px);
+    width: 100vw;
+  }
+  .menu__content {
+    transform: translateX(0);
+  }
+}
+
+.menu__wrapper {
+  position: fixed;
+  width: 0;
+  height: 100vh;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(0);
+}
+
+.menu__content {
+  overflow: hidden;
+  background-color: #c7bdbd;
+  height: 100%;
+  max-width: 350px;
+  transition: all 0.3s;
+  transform: translateX(-100%);
+  padding: 20px;
+}
+
+.menu__nav-list {
+  padding: 0;
+}
+
+.menu__nav-item {
+  list-style: none;
+  font-size: 2em;
+}

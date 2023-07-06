@@ -4,30 +4,37 @@ import { IComment } from '../../models/IComment';
 
 interface ICommentsState {
   postId: number;
-  comments: IComment[];
   isLoading: boolean;
+  comments: IComment[];
+  error: string;
 }
 
 const initialState: ICommentsState = {
   postId: 0,
-  comments: [],
   isLoading: false,
+  comments: [],
+  error: '',
 };
 
 const commentsSlice = createSlice({
   name: 'comments',
   initialState: initialState,
   reducers: {
-    getCommentsLoading: (state, action) => {
-      state.postId = action.payload;
+    commentsRequest(state, action) {
       state.isLoading = true;
+      state.postId = action.payload;
     },
-    getComments: (state, action) => {
+    setComments(state, action) {
       state.comments = action.payload;
+      state.isLoading = false;
+    },
+    commentsRequestError(state, action) {
+      state.error = action.payload;
       state.isLoading = false;
     },
   },
 });
 
-export const { getCommentsLoading, getComments } = commentsSlice.actions;
+export const { commentsRequest, setComments, commentsRequestError } =
+  commentsSlice.actions;
 export default commentsSlice.reducer;

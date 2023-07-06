@@ -11,6 +11,10 @@ import commentsSaga from './sagas/commentsSaga';
 import userReducer from './slices/userSlice';
 import userSaga from './sagas/userSaga';
 
+import menuReducer from './slices/menuSlice';
+
+import errorsReducer from './slices/errorsSlice';
+
 const sagaMiddleware = createSagaMiddleware();
 
 function* sagas() {
@@ -20,9 +24,11 @@ function* sagas() {
 export const store = configureStore({
   devTools: true,
   reducer: {
+    menu: menuReducer,
     posts: postsReducer,
     comments: commentsReducer,
     user: userReducer,
+    error: errorsReducer,
   },
   middleware: [sagaMiddleware],
 });

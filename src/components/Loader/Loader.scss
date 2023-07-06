@@ -1,0 +1,15 @@
+.loader {
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  border: 5px solid #132a2a;
+  border-bottom: 5px solid transparent;
+  position: relative;
+  animation: 0.75s linear infinite loader;
+}
+
+@keyframes loader {
+  to {
+    transform: rotate(360deg);
+  }
+}

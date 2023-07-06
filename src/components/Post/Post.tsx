@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
 import './Post.scss';
 
+import stringPreparing from '../../lib/stringPreparing';
+
 import { IPost } from '../../models/IPost';
+
 import CommentList from '../Comment-List/Comment-List';
 
 interface PostProps {
@@ -9,19 +12,12 @@ interface PostProps {
 }
 
 const Post = ({ post }: PostProps) => {
-  const userAvatarHandler = (): void => {
-    localStorage.setItem('userId', post.userId.toString());
-  };
-
-  const stringPreparing = (string: string): string => {
-    let preparedString = string[0].toUpperCase() + string.slice(1);
-    return preparedString;
-  };
+  const { userId, title, body, id } = post;
 
   return (
     <div className="post">
       <div className="post__head">
-        <Link to={'/user'} onClick={userAvatarHandler} className="post__avatar">
+        <Link to={`/user/${userId}`} className="post__avatar">
           <img
             src="/JasonStatham.jpg"
             alt="Avatar"
@@ -29,13 +25,13 @@ const Post = ({ post }: PostProps) => {
           />
         </Link>
         <div className="post__title">
-          <h2>{stringPreparing(post.title)}</h2>
+          <h2>{stringPreparing(title)}</h2>
         </div>
       </div>
       <div className="post__body">
-        <p className="post__content">{stringPreparing(post.body)}</p>
+        <p className="post__content">{stringPreparing(body)}</p>
       </div>
-      <CommentList postId={post.id} />
+      <CommentList postId={id} />
     </div>
   );
 };

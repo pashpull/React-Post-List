@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
 import './Comment-List.scss';
 
-import { useAppSelector, useAppDispatch } from '../../hooks/hooks';
-import { getCommentsLoading } from '../../redux/slices/commentsSlice';
+import { useAppSelector, useAppDispatch } from '../../hooks/hooksForRedux';
+import { commentsRequest } from '../../redux/slices/commentsSlice';
 
 import { IComment } from '../../models/IComment';
 
-import Spinner from 'react-bootstrap/Spinner';
-
 import Button from '../../UI/Button/Button';
+import Loader from '../Loader/Loader';
 import Comment from '../Comment/Comment';
 
 interface CommentListProps {
@@ -16,44 +15,41 @@ interface CommentListProps {
 }
 
 const CommentList = ({ postId }: CommentListProps) => {
-  const [comments, setComments] = useState<IComment[]>([]);
+  const commentsState = useAppSelector((state) => state.comments);
 
-  const commentsState = useAppSelector((state) => {
-    return {
-      comments: state.comments.comments,
-      isLoading: state.comments.isLoading,
-      postId: state.comments.postId,
-    };
-  });
+  const [comments, setComments] = useState<IComment[]>([]);
+  const [commentListIsOpen, setCommentListIsOpen] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
 
-  const commetnsBtnHandler = (): void => {
-    comments.length === 0
-      ? dispatch(getCommentsLoading(postId))
-      : setComments([]);
+  const commentsBtnHandler = (): void => {
+    comments.length === 0 ? dispatch(commentsRequest(postId)) : setComments([]);
+    setCommentListIsOpen(!commentListIsOpen);
   };
 
-  useEffect(() => {
-    commentsState.postId === postId && setComments(commentsState.comments);
+  const itIsThisList: boolean = commentsState.postId === postId;
+
+  useEffect((): void => {
+    if (commentListIsOpen && itIsThisList) {
+      setComments(commentsState.comments);
+    }
   }, [commentsState.comments]);
 
   return (
-    <div className="comments">
-      <Button text={'Comments'} toDo={commetnsBtnHandler} />
-      {commentsState.isLoading && postId === commentsState.postId ? (
-        <Spinner animation="border" variant="primary" />
-      ) : (
-        comments.map((comment: IComment) => {
-          return (
-            <Comment
-              key={comment.id}
-              email={comment.email}
-              text={comment.body}
-            />
-          );
-        })
-      )}
+    <div key={postId} className="comment-list">
+      <Button text={'Comments'} toDo={commentsBtnHandler} />
+      {commentListIsOpen &&
+        (commentsState.isLoading && itIsThisList ? (
+          <Loader />
+        ) : comments.length === 0 ? (
+          <h2>Comments not found.</h2>
+        ) : commentsState.error ? (
+          <h2>{commentsState.error}</h2>
+        ) : (
+          comments.map((comment: IComment) => {
+            return <Comment key={comment.id} comment={comment} />;
+          })
+        ))}
     </div>
   );
 };

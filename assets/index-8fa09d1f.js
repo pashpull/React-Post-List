@@ -15691,7 +15691,11 @@ const Px = () => {
             children: [
               P.jsx('li', {
                 className: 'menu__nav-item',
-                children: P.jsx(ks, { to: '', onClick: o, children: 'Home' }),
+                children: P.jsx(ks, {
+                  to: 'React-Post-List/',
+                  onClick: o,
+                  children: 'Home',
+                }),
               }),
               P.jsx('li', {
                 className: 'menu__nav-item',
@@ -15729,7 +15733,7 @@ function Ox() {
         P.jsx(Rx, {
           children: P.jsxs(ux, {
             children: [
-              P.jsx(Er, { path: '/React-Post-List/', element: P.jsx(xx, {}) }),
+              P.jsx(Er, { path: 'React-Post-List/', element: P.jsx(xx, {}) }),
               P.jsx(Er, {
                 path: 'React-Post-List/user/:userId',
                 element: P.jsx(Cx, {}),

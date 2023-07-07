@@ -15729,7 +15729,7 @@ function Ox() {
         P.jsx(Rx, {
           children: P.jsxs(ux, {
             children: [
-              P.jsx(Er, { path: 'React-Post-List/', element: P.jsx(xx, {}) }),
+              P.jsx(Er, { path: '/React-Post-List/', element: P.jsx(xx, {}) }),
               P.jsx(Er, {
                 path: 'React-Post-List/user/:userId',
                 element: P.jsx(Cx, {}),

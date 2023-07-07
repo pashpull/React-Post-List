@@ -15754,7 +15754,7 @@ function Ox() {
                 element: P.jsx(Cx, {}),
               }),
               P.jsx(Er, {
-                path: '/React-Post-List/about',
+                path: '/React-Post-List/#/about',
                 element: P.jsx(kx, {}),
               }),
               P.jsx(Er, {

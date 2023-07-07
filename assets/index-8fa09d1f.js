@@ -15537,7 +15537,7 @@ const wx = ({ comment: e }) => {
           className: 'post__head',
           children: [
             P.jsx(ks, {
-              to: `/React-Post-List/user/${t}`,
+              to: `React-Post-List/user/${t}`,
               className: 'post__avatar',
               children: P.jsx('img', {
                 src: '/React-Post-List/JasonStatham.jpg',

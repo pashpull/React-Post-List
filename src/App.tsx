@@ -1,6 +1,6 @@
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import 'normalize.css';
 import './App.scss';
@@ -17,19 +17,19 @@ import Main from './components/Main/Main';
 function App() {
   return (
     <Provider store={store}>
-      <HashRouter>
+      <BrowserRouter basename="/React-Post-List">
         <Header />
         <Menu />
         <Main>
           <Routes>
-            <Route path="/" element={<PostListPage />} />
+            <Route index element={<PostListPage />} />
             <Route path="/user/:userId" element={<UserPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="*" element={<h1>Page is not found</h1>} />
           </Routes>
         </Main>
         <Footer />
-      </HashRouter>
+      </BrowserRouter>
     </Provider>
   );
 }

@@ -17,9 +17,9 @@ const Post = ({ post }: PostProps) => {
   return (
     <div className="post">
       <div className="post__head">
-        <Link to={`user/${userId}`} className="post__avatar">
+        <Link to={`/user/${userId}`} className="post__avatar">
           <img
-            src="JasonStatham.jpg"
+            src="/JasonStatham.jpg"
             alt="Avatar"
             className="post__avatar-img"
           />
